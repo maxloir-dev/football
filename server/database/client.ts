@@ -1,8 +1,8 @@
 // Get variables from .env file for database connection
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
-// Create a connection pool to the database
 import mysql from "mysql2/promise";
+// Create a connection pool to the database
 
 const client = mysql.createPool({
   host: DB_HOST,

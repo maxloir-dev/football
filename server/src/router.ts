@@ -1,18 +1,14 @@
 import express from "express";
+import teamRouter from "./modules/item/team/teamRouter";
+import playerActions from "./modules/player/playerActions";
+import playerRouter from "./modules/player/playerRouter";
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
+router.use("/teams", teamRouter);
+router.use("/players", playerRouter);
 
-// Define item-related routes
-import itemActions from "./modules/item/itemActions";
-
-router.get("/api/items", itemActions.browse);
-router.get("/api/items/:id", itemActions.read);
-router.post("/api/items", itemActions.add);
-
-/* ************************************************************************* */
+// Route imbriquée : joueurs d'une équipe
+router.get("/teams/:teamId/players", playerActions.browseByTeam);
 
 export default router;
