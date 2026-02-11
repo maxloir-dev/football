@@ -1,0 +1,125 @@
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.home-content {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.home-title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.home-subtitle {
+  font-size: 1.5rem;
+  color: #cbd5e1;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.leagues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.league-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: white;
+}
+
+.league-card:hover {
+  transform: scale(1.05);
+}
+
+.league-card-blue {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+}
+
+.league-card-blue:hover {
+  box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.5);
+}
+
+.league-card-green {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+}
+
+.league-card-green:hover {
+  box-shadow: 0 25px 50px -12px rgba(22, 163, 74, 0.5);
+}
+
+.league-card-content {
+  position: relative;
+  z-index: 10;
+}
+
+.league-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.league-description {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+}
+
+.league-link {
+  display: flex;
+  align-items: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.arrow {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.league-card:hover .arrow {
+  transform: translateX(0.5rem);
+}
+
+.league-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10rem;
+  opacity: 0.1;
+  transition: opacity 0.3s ease;
+}
+
+.league-card:hover .league-icon {
+  opacity: 0.2;
+}
+
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 2.5rem;
+  }
+
+  .home-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .league-name {
+    font-size: 2rem;
+  }
+}
