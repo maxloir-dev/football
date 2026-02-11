@@ -1,15 +1,27 @@
-.standings-container {
+.team-details-container {
   min-height: 100vh;
-  background-color: #0f172a;
+  background-color: #111827;
   padding: 2rem 1rem;
+  color: #e5e7eb;
+  font-family: "Inter", sans-serif;
 }
 
-.standings-content {
-  max-width: 1400px;
-  margin: 0 auto;
+.team-header {
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+}
+.team-header h1 {
+  font-size: 3rem; /* plus grand pour le nom de l'équipe */
+  font-weight: 700; /* un peu plus gras */
+  text-align: center; /* centré horizontalement */
+  color: #f9fafb; /* texte clair */
+  margin-bottom: 0.5rem; /* espace sous le titre */
 }
 
-.standings-header {
+.team-header p {
+  text-align: center; /* centrer le sous-titre si tu en as un */
+  color: #9ca3af;
+  font-size: 1.125rem;
   margin-bottom: 2rem;
 }
 
@@ -19,160 +31,133 @@
   color: #9ca3af;
   text-decoration: none;
   margin-bottom: 1rem;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .back-link:hover {
-  color: white;
+  color: #ffffff;
 }
 
-.back-arrow {
-  font-size: 1.5rem;
-  margin-right: 0.5rem;
-}
-
-.standings-title {
-  font-size: 3rem;
-  font-weight: bold;
-  color: white;
-  margin-bottom: 0.5rem;
-}
-
-.standings-subtitle {
-  color: #9ca3af;
-  font-size: 1.125rem;
-}
-
-.table-container {
+.players-table {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-collapse: collapse;
   background-color: #1e293b;
   border-radius: 1rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-.standings-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table-head {
-  color: white;
-}
-
-.table-head.league-blue {
-  background-color: #2563eb;
-}
-
-.table-head.league-green {
-  background-color: #16a34a;
-}
-
-.table-head th {
+.players-table th,
+.players-table td {
   padding: 1rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.th-rank,
-.th-points {
-  text-align: center;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.th-team {
   text-align: left;
+  font-size: 0.875rem;
+  min-width: 80px;
+  vertical-align: middle;
+  background-color: #1f2937; /* cellule légèrement différente du fond */
+  border-radius: 0.5rem;
 }
 
-.th-stat {
-  text-align: center;
-  padding: 1rem;
+.players-table thead {
+  background-color: #374151;
+  color: #f9fafb;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.players-table tbody td:last-child {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
 }
 
-.table-row {
+.players-table tbody tr {
   border-bottom: 1px solid #334155;
   transition: background-color 0.2s ease;
 }
 
-.table-row:hover {
+/* .players-table tbody tr:hover {
   background-color: #334155;
+} 
+
+/* Ligne en édition ou ajout */
+.players-table tbody tr.editing,
+.players-table tbody tr.adding-row {
+  background-color: #2563eb33;
+}
+
+.players-table tbody td input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #94a3b8;
+  background-color: #0f172a;
+  color: white;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+
+.players-table tbody td input::placeholder {
+  color: #94a3b8;
+}
+.players-table th:nth-child(1),
+.players-table td:nth-child(1) {
+  width: 50px;
+} /* numéro */
+.players-table th:nth-child(2),
+.players-table td:nth-child(2) {
+  width: 120px;
+} /* prénom */
+.players-table th:nth-child(3),
+.players-table td:nth-child(3) {
+  width: 120px;
+} /* nom */
+.players-table th:nth-child(4),
+.players-table td:nth-child(4) {
+  width: 100px;
+} /* poste */
+.players-table th:nth-child(5),
+.players-table td:nth-child(5) {
+  width: 250px;
+} /* actions */
+
+/* Boutons */
+button {
+  margin-right: 0.5rem;
   cursor: pointer;
-}
-
-.table-row td {
-  padding: 1rem;
-}
-
-.td-rank {
-  color: #cbd5e1;
-  font-weight: 500;
-  text-align: center;
-}
-
-.td-team {
-  color: white;
-  font-weight: 600;
-  text-align: left;
-}
-
-.td-stat {
-  color: #cbd5e1;
-  text-align: center;
-}
-
-.stat-won {
-  color: #4ade80;
-  font-weight: 500;
-}
-
-.stat-lost {
-  color: #f87171;
-  font-weight: 500;
-}
-
-.stat-drawn {
-  color: #94a3b8;
-}
-
-.stat-positive {
-  color: #4ade80;
-  font-weight: 500;
-}
-
-.stat-negative {
-  color: #f87171;
-  font-weight: 500;
-}
-
-.stat-neutral {
-  color: #94a3b8;
-}
-
-.td-points {
-  text-align: center;
-}
-
-.points-badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  color: white;
   font-weight: bold;
-  font-size: 1.125rem;
+  border: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
 }
 
-.points-badge.league-blue {
+button.success {
+  background-color: #4ade80;
+  color: #0f172a;
+}
+
+button.warning {
+  background-color: #fbbf24;
+  color: #0f172a;
+}
+
+button.danger {
+  background-color: #f87171;
+  color: #0f172a;
+}
+
+button.primary {
   background-color: #2563eb;
-}
-
-.points-badge.league-green {
-  background-color: #16a34a;
+  color: white;
 }
 
 .loading-container {
   min-height: 100vh;
-  background-color: #0f172a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -183,21 +168,21 @@
   font-size: 1.5rem;
 }
 
-@media (max-width: 768px) {
-  .standings-title {
-    font-size: 2rem;
-  }
+.error-message {
+  color: #f87171;
+  font-size: 1.25rem;
+  text-align: center;
+  margin-top: 2rem;
+}
 
-  .table-head th {
-    padding: 0.75rem 0.5rem;
+@media (max-width: 768px) {
+  .players-table th,
+  .players-table td {
+    padding: 0.5rem;
     font-size: 0.75rem;
   }
 
-  .table-row td {
-    padding: 0.75rem 0.5rem;
-  }
-
-  .td-team {
-    font-size: 0.875rem;
+  .team-header h1 {
+    font-size: 2rem;
   }
 }

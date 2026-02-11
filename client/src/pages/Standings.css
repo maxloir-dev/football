@@ -1,0 +1,203 @@
+.standings-container {
+  min-height: 100vh;
+  background-color: #0f172a;
+  padding: 2rem 1rem;
+}
+
+.standings-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.standings-header {
+  margin-bottom: 2rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: #9ca3af;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: white;
+}
+
+.back-arrow {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.standings-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.standings-subtitle {
+  color: #9ca3af;
+  font-size: 1.125rem;
+}
+
+.table-container {
+  background-color: #1e293b;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.standings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-head {
+  color: white;
+}
+
+.table-head.league-blue {
+  background-color: #2563eb;
+}
+
+.table-head.league-green {
+  background-color: #16a34a;
+}
+
+.table-head th {
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.th-rank,
+.th-points {
+  text-align: center;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.th-team {
+  text-align: left;
+}
+
+.th-stat {
+  text-align: center;
+  padding: 1rem;
+}
+
+.table-row {
+  border-bottom: 1px solid #334155;
+  transition: background-color 0.2s ease;
+}
+
+.table-row:hover {
+  background-color: #334155;
+  cursor: pointer;
+}
+
+.table-row td {
+  padding: 1rem;
+}
+
+.td-rank {
+  color: #cbd5e1;
+  font-weight: 500;
+  text-align: center;
+}
+
+.td-team {
+  color: white;
+  font-weight: 600;
+  text-align: left;
+}
+
+.td-stat {
+  color: #cbd5e1;
+  text-align: center;
+}
+
+.stat-won {
+  color: #4ade80;
+  font-weight: 500;
+}
+
+.stat-lost {
+  color: #f87171;
+  font-weight: 500;
+}
+
+.stat-drawn {
+  color: #94a3b8;
+}
+
+.stat-positive {
+  color: #4ade80;
+  font-weight: 500;
+}
+
+.stat-negative {
+  color: #f87171;
+  font-weight: 500;
+}
+
+.stat-neutral {
+  color: #94a3b8;
+}
+
+.td-points {
+  text-align: center;
+}
+
+.points-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.points-badge.league-blue {
+  background-color: #2563eb;
+}
+
+.points-badge.league-green {
+  background-color: #16a34a;
+}
+
+.loading-container {
+  min-height: 100vh;
+  background-color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-text {
+  color: white;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .standings-title {
+    font-size: 2rem;
+  }
+
+  .table-head th {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .table-row td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .td-team {
+    font-size: 0.875rem;
+  }
+}

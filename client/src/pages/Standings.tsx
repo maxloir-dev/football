@@ -78,9 +78,14 @@ function Standings() {
               {standings.map((team, index) => (
                 <tr key={team.team_id} className="table-row">
                   <td className="td-rank">{index + 1}</td>
+
+                  {/* Nom de l'équipe avec lien vers la page équipe */}
                   <td className="td-team">
-                    <div className="team-name">{team.team_name}</div>
+                    <Link to={`/teams/${team.team_id}`} className="team-link">
+                      {team.team_name}
+                    </Link>
                   </td>
+
                   <td className="td-stat">{team.played}</td>
                   <td className="td-stat stat-won">{team.won}</td>
                   <td className="td-stat stat-drawn">{team.drawn}</td>
