@@ -4,6 +4,24 @@
   padding: 2rem 1rem;
   color: #e5e7eb;
   font-family: "Inter", sans-serif;
+  position: relative;
+  overflow: hidden;
+  padding-top: 100px;
+}
+
+.team-logo-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1200px;
+  height: 1200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .team-header {
@@ -11,15 +29,15 @@
   margin: 0 auto 2rem auto;
 }
 .team-header h1 {
-  font-size: 3rem; /* plus grand pour le nom de l'équipe */
-  font-weight: 700; /* un peu plus gras */
-  text-align: center; /* centré horizontalement */
-  color: #f9fafb; /* texte clair */
-  margin-bottom: 0.5rem; /* espace sous le titre */
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  color: #f9fafb;
+  margin-bottom: 0.5rem;
 }
 
 .team-header p {
-  text-align: center; /* centrer le sous-titre si tu en as un */
+  text-align: center;
   color: #9ca3af;
   font-size: 1.125rem;
   margin-bottom: 2rem;
@@ -57,7 +75,7 @@
   font-size: 0.875rem;
   min-width: 80px;
   vertical-align: middle;
-  background-color: #1f2937; /* cellule légèrement différente du fond */
+  background-color: #1f2937;
   border-radius: 0.5rem;
 }
 
@@ -173,6 +191,30 @@ button.primary {
   font-size: 1.25rem;
   text-align: center;
   margin-top: 2rem;
+}
+/* Container 2 colonnes */
+.team-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: sticky;
+  top: 2rem;
+}
+
+.right-column h2 {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
 }
 
 @media (max-width: 768px) {

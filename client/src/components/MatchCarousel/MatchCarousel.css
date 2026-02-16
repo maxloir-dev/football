@@ -1,0 +1,273 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 100%);
+  max-width: 1600px;
+  margin: 0 auto;
+  border-radius: 1.5rem;
+  padding: 3rem 2rem;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.carousel-loading,
+.carousel-empty {
+  text-align: center;
+  color: white;
+  font-size: 1.25rem;
+  padding: 2rem;
+}
+
+/* Contenu du carrousel */
+.carousel-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Carte du match */
+.match-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.5rem;
+  padding: 2rem 3rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Équipes */
+.team {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+  color: white;
+}
+
+.home-team {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.away-team {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.team-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.team-score {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #fbbf24;
+  text-shadow: 0 4px 10px rgba(251, 191, 36, 0.5);
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Séparateur central */
+.match-separator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 2rem;
+}
+
+.vs-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+}
+
+.match-date {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Statut du match */
+.match-status {
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ef4444;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.5);
+}
+
+/* Boutons de navigation */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 3rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.carousel-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-button-prev {
+  left: 2rem;
+}
+
+.carousel-button-next {
+  right: 2rem;
+}
+
+/* Indicateurs (dots) */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background: #fbbf24;
+  border-color: #fbbf24;
+  width: 30px;
+  border-radius: 9999px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .match-card {
+    padding: 1.5rem 2rem;
+    gap: 1.5rem;
+  }
+
+  .team-name {
+    font-size: 1.25rem;
+  }
+
+  .team-score {
+    font-size: 3rem;
+    min-width: 60px;
+  }
+
+  .vs-text {
+    font-size: 1.5rem;
+    padding: 0.375rem 1rem;
+  }
+
+  .carousel-button {
+    width: 50px;
+    height: 50px;
+    font-size: 2.5rem;
+  }
+
+  .carousel-button-prev {
+    left: 1rem;
+  }
+
+  .carousel-button-next {
+    right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-container {
+    padding: 2rem 1rem;
+  }
+
+  .match-card {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .team {
+    width: 100%;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .team-name {
+    font-size: 1rem;
+  }
+
+  .team-score {
+    font-size: 2.5rem;
+  }
+
+  .match-separator {
+    padding: 1rem 0;
+  }
+
+  .carousel-button {
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+  }
+
+  .carousel-button-prev {
+    left: 0.5rem;
+  }
+
+  .carousel-button-next {
+    right: 0.5rem;
+  }
+}

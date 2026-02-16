@@ -1,16 +1,22 @@
 .standings-container {
   min-height: 100vh;
-  background-color: #0f172a;
+  background-color: #111827; /* comme team-details */
   padding: 2rem 1rem;
+  padding-top: 100px;
+  color: #e5e7eb;
+  font-family: "Inter", sans-serif;
 }
 
 .standings-content {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
+/* HEADER */
+
 .standings-header {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .back-link {
@@ -19,6 +25,7 @@
   color: #9ca3af;
   text-decoration: none;
   margin-bottom: 1rem;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
@@ -33,8 +40,8 @@
 
 .standings-title {
   font-size: 3rem;
-  font-weight: bold;
-  color: white;
+  font-weight: 700;
+  color: #f9fafb;
   margin-bottom: 0.5rem;
 }
 
@@ -43,52 +50,37 @@
   font-size: 1.125rem;
 }
 
+/* TABLE CONTAINER */
+
 .table-container {
   background-color: #1e293b;
   border-radius: 1rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
+
+/* TABLE */
 
 .standings-table {
   width: 100%;
   border-collapse: collapse;
 }
 
+/* HEADER */
+
 .table-head {
-  color: white;
-}
-
-.table-head.league-blue {
-  background-color: #2563eb;
-}
-
-.table-head.league-green {
-  background-color: #16a34a;
+  background-color: #374151; /* comme teamDetails */
+  color: #f9fafb;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .table-head th {
   padding: 1rem;
   font-size: 0.875rem;
-  font-weight: 600;
-  text-transform: uppercase;
 }
 
-.th-rank,
-.th-points {
-  text-align: center;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.th-team {
-  text-align: left;
-}
-
-.th-stat {
-  text-align: center;
-  padding: 1rem;
-}
+/* ROWS */
 
 .table-row {
   border-bottom: 1px solid #334155;
@@ -97,29 +89,35 @@
 
 .table-row:hover {
   background-color: #334155;
-  cursor: pointer;
 }
 
-.table-row td {
+/* CELLS */
+
+.standings-table td {
   padding: 1rem;
+  font-size: 0.875rem;
+  background-color: #1f2937; /* comme players-table td */
+  border-radius: 0.5rem;
 }
 
-.td-rank {
-  color: #cbd5e1;
-  font-weight: 500;
+.td-rank,
+.th-rank,
+.th-points,
+.td-points {
   text-align: center;
 }
 
 .td-team {
   color: white;
   font-weight: 600;
-  text-align: left;
 }
 
 .td-stat {
   color: #cbd5e1;
   text-align: center;
 }
+
+/* STATS COLORS (identique à ton style actuel mais harmonisé) */
 
 .stat-won {
   color: #4ade80;
@@ -149,30 +147,23 @@
   color: #94a3b8;
 }
 
-.td-points {
-  text-align: center;
-}
+/* BADGE POINTS - style plus admin */
 
 .points-badge {
   display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  color: white;
-  font-weight: bold;
-  font-size: 1.125rem;
-}
-
-.points-badge.league-blue {
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.5rem; /* moins pill, plus dashboard */
   background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
-.points-badge.league-green {
-  background-color: #16a34a;
-}
+/* LOADING */
 
 .loading-container {
   min-height: 100vh;
-  background-color: #0f172a;
+  background-color: #111827;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -183,21 +174,57 @@
   font-size: 1.5rem;
 }
 
+/* TEAM LINK */
+
+.team-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.team-link:hover {
+  color: #60a5fa;
+}
+
+/* IMPORTANT pour le logo background */
+.standings-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Logo géant en fond */
+.standings-logo-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1200px;
+  height: 1200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.1; /* mets 0.2 si tu veux le voir plus */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Le contenu doit passer au-dessus */
+.standings-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* RESPONSIVE */
+
 @media (max-width: 768px) {
   .standings-title {
     font-size: 2rem;
   }
 
-  .table-head th {
-    padding: 0.75rem 0.5rem;
+  .standings-table th,
+  .standings-table td {
+    padding: 0.5rem;
     font-size: 0.75rem;
-  }
-
-  .table-row td {
-    padding: 0.75rem 0.5rem;
-  }
-
-  .td-team {
-    font-size: 0.875rem;
   }
 }

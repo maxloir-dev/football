@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import ligue1 from "../assets/ligue1.svg";
+import ligue2 from "../assets/ligue2.svg";
 import "./Standings.css";
 
 interface Standing {
@@ -46,6 +48,12 @@ function Standings() {
 
   return (
     <div className="standings-container">
+      <div
+        className="standings-logo-background"
+        style={{
+          backgroundImage: `url(${leagueId === "1" ? ligue1 : ligue2})`,
+        }}
+      />
       <div className="standings-content">
         {/* Header */}
         <div className="standings-header">

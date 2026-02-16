@@ -1,0 +1,409 @@
+.tactics-container {
+  max-width: 800px;
+  margin: 3rem auto;
+}
+
+.tactics-title {
+  text-align: center;
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+/* Terrain de foot */
+.field {
+  position: relative;
+  background: linear-gradient(180deg, #16a34a 0%, #15803d 100%);
+  border: 3px solid white;
+  border-radius: 0.5rem;
+  padding: 2rem 1rem;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Ligne du milieu */
+.field::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%);
+}
+
+/* Cercle central */
+.field::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Lignes de joueurs */
+.line {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1;
+}
+
+.line-attackers {
+  padding-top: 1rem;
+}
+
+.line-midfielders {
+  padding: 1rem 0;
+}
+
+.line-defenders {
+  padding: 1rem 0;
+}
+
+.line-goalkeeper {
+  padding-bottom: 1rem;
+}
+
+/* Carte joueur */
+.player-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(30, 41, 59, 0.95);
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.player-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+}
+
+.player-number {
+  color: #fbbf24;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.125rem;
+}
+
+.player-name {
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tactics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tactics-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Sélecteur de formation */
+.formation-select {
+  background-color: #1e293b;
+  color: white;
+  border: 2px solid #475569;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.formation-select:hover {
+  border-color: #60a5fa;
+}
+
+.formation-select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+/* Bouton mode édition */
+.edit-button {
+  background-color: #fbbf24;
+  color: #0f172a;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.edit-button:hover {
+  background-color: #f59e0b;
+}
+
+.edit-button:active {
+  transform: scale(0.97);
+}
+
+.edit-button.active {
+  background-color: #4ade80;
+}
+
+/* Message mode édition */
+.edit-notice {
+  background-color: #1e40af;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mode édition : cartes cliquables */
+.player-card.editable {
+  cursor: pointer;
+  border-color: #fbbf24;
+}
+
+.player-card.editable:hover {
+  transform: scale(1.15);
+  border-color: #f59e0b;
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+}
+
+.player-card.editable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.player-card.editable:hover {
+  transform: scale(1.15);
+  border-color: #fbbf24;
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Modal content */
+.modal-content {
+  background: #1e293b;
+  border-radius: 1rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #334155;
+}
+
+.modal-header h3 {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-close:hover {
+  background-color: #334155;
+  color: white;
+}
+
+/* Modal body */
+.modal-body {
+  padding: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Options de remplacement */
+.replacement-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #0f172a;
+  border: 2px solid #334155;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.replacement-option:hover {
+  border-color: #2563eb;
+  background: #1e293b;
+  transform: translateX(5px);
+}
+
+.replacement-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #2563eb;
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.replacement-name {
+  flex: 1;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.replacement-position {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Disabled select en mode édition */
+.formation-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .field {
+    min-height: 500px;
+    padding: 1rem 0.5rem;
+  }
+
+  .player-card {
+    width: 60px;
+    height: 60px;
+  }
+
+  .player-number {
+    font-size: 0.875rem;
+  }
+
+  .player-name {
+    font-size: 0.5rem;
+  }
+  .tactics-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tactics-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .formation-select,
+  .edit-button {
+    flex: 1;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+
+  .replacement-option {
+    padding: 0.75rem;
+  }
+
+  .replacement-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .replacement-name {
+    font-size: 0.875rem;
+  }
+}

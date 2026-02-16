@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ActionButton from "../components/ActionButton/ActionButton";
+import RecentMatches from "../components/RecentMatches/RecentMatches";
+import Tactics from "../components/Tactics/Tactics";
+import { getTeamLogo } from "../utils/teamLogo";
 import "./TeamDetails.css";
 
 interface Player {
@@ -16,6 +19,7 @@ interface Team {
   name: string;
   city: string;
   stadium: string;
+  league_id: number;
 }
 
 function TeamDetails() {
@@ -32,7 +36,7 @@ function TeamDetails() {
   const [adding, setAdding] = useState(false);
   const [newPlayer, setNewPlayer] = useState<Partial<Player>>({});
 
-  //Fetch équipe et joueurs au chargement
+  // Fetch équipe et joueurs au chargement
   useEffect(() => {
     if (!teamId) return;
 
@@ -164,12 +168,22 @@ function TeamDetails() {
   if (error) return <div className="error-message">{error}</div>;
   if (!team) return <div className="error-message">Équipe introuvable</div>;
 
+  const teamLogo = getTeamLogo(team.id);
+
   return (
     <div className="team-details-container">
-      <Link to="/" className="back-link">
-        ← Retour
+      {/* Logo en fond */}
+      <div
+        className="team-logo-background"
+        style={{ backgroundImage: `url(${teamLogo})` }}
+      />
+
+      {/* Bouton retour */}
+      <Link to={`/standings/${team.league_id}`} className="back-link">
+        ← Retour au classement
       </Link>
 
+      {/* Header équipe */}
       <div className="team-header">
         <h1>{team.name}</h1>
         <p>
@@ -177,160 +191,184 @@ function TeamDetails() {
         </p>
       </div>
 
-      <h2>Effectif</h2>
+      {/* Container 2 colonnes */}
+      <div className="team-content">
+        {/* Colonne gauche : Terrain + Derniers matchs */}
+        <div className="left-column">
+          <Tactics players={players} />
+          <RecentMatches teamId={team.id} teamName={team.name} />
+        </div>
 
-      <table className="players-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Poste</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-          {players.map((player) => (
-            <tr key={player.id}>
-              <td>
-                {editingId === player.id ? (
-                  <input
-                    type="number"
-                    value={editingPlayer.number || ""}
-                    onChange={(e) =>
-                      handleChange("number", Number(e.target.value))
-                    }
-                  />
-                ) : (
-                  player.number
-                )}
-              </td>
-              <td>
-                {editingId === player.id ? (
-                  <input
-                    type="text"
-                    value={editingPlayer.firstname || ""}
-                    onChange={(e) => handleChange("firstname", e.target.value)}
-                  />
-                ) : (
-                  player.firstname
-                )}
-              </td>
-              <td>
-                {editingId === player.id ? (
-                  <input
-                    type="text"
-                    value={editingPlayer.lastname || ""}
-                    onChange={(e) => handleChange("lastname", e.target.value)}
-                  />
-                ) : (
-                  player.lastname
-                )}
-              </td>
-              <td>
-                {editingId === player.id ? (
-                  <input
-                    type="text"
-                    value={editingPlayer.position || ""}
-                    onChange={(e) => handleChange("position", e.target.value)}
-                  />
-                ) : (
-                  player.position
-                )}
-              </td>
-              <td>
-                {editingId === player.id ? (
-                  <>
+        {/* Colonne droite : Effectif complet */}
+        <div className="right-column">
+          <h2>Effectif complet</h2>
+
+          <table className="players-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Poste</th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody>
+              {players.map((player) => (
+                <tr key={player.id}>
+                  <td>
+                    {editingId === player.id ? (
+                      <input
+                        type="number"
+                        value={editingPlayer.number || ""}
+                        onChange={(e) =>
+                          handleChange("number", Number(e.target.value))
+                        }
+                      />
+                    ) : (
+                      player.number
+                    )}
+                  </td>
+                  <td>
+                    {editingId === player.id ? (
+                      <input
+                        type="text"
+                        value={editingPlayer.firstname || ""}
+                        onChange={(e) =>
+                          handleChange("firstname", e.target.value)
+                        }
+                      />
+                    ) : (
+                      player.firstname
+                    )}
+                  </td>
+                  <td>
+                    {editingId === player.id ? (
+                      <input
+                        type="text"
+                        value={editingPlayer.lastname || ""}
+                        onChange={(e) =>
+                          handleChange("lastname", e.target.value)
+                        }
+                      />
+                    ) : (
+                      player.lastname
+                    )}
+                  </td>
+                  <td>
+                    {editingId === player.id ? (
+                      <input
+                        type="text"
+                        value={editingPlayer.position || ""}
+                        onChange={(e) =>
+                          handleChange("position", e.target.value)
+                        }
+                      />
+                    ) : (
+                      player.position
+                    )}
+                  </td>
+                  <td>
+                    {editingId === player.id ? (
+                      <>
+                        <ActionButton
+                          label="Enregistrer"
+                          variant="success"
+                          onClick={() => handleSave(player.id)}
+                        />
+                        <ActionButton
+                          label="Annuler"
+                          variant="primary"
+                          onClick={handleCancel}
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <ActionButton
+                          label="Modifier"
+                          variant="warning"
+                          onClick={() => handleEdit(player)}
+                        />
+                        <ActionButton
+                          label="Supprimer"
+                          variant="danger"
+                          onClick={() => handleDelete(player.id)}
+                        />
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+
+              {/* Ligne ajout joueur */}
+              {adding && (
+                <tr className="adding-row">
+                  <td>
+                    <input
+                      type="number"
+                      placeholder="Numéro"
+                      value={newPlayer.number || ""}
+                      onChange={(e) =>
+                        handleNewChange("number", Number(e.target.value))
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      placeholder="Prénom"
+                      value={newPlayer.firstname || ""}
+                      onChange={(e) =>
+                        handleNewChange("firstname", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      placeholder="Nom"
+                      value={newPlayer.lastname || ""}
+                      onChange={(e) =>
+                        handleNewChange("lastname", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      placeholder="Poste"
+                      value={newPlayer.position || ""}
+                      onChange={(e) =>
+                        handleNewChange("position", e.target.value)
+                      }
+                    />
+                  </td>
+                  <td>
                     <ActionButton
                       label="Enregistrer"
                       variant="success"
-                      onClick={() => handleSave(player.id)}
+                      onClick={handleAdd}
                     />
                     <ActionButton
                       label="Annuler"
                       variant="primary"
                       onClick={handleCancel}
                     />
-                  </>
-                ) : (
-                  <>
-                    <ActionButton
-                      label="Modifier"
-                      variant="warning"
-                      onClick={() => handleEdit(player)}
-                    />
-                    <ActionButton
-                      label="Supprimer"
-                      variant="danger"
-                      onClick={() => handleDelete(player.id)}
-                    />
-                  </>
-                )}
-              </td>
-            </tr>
-          ))}
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
 
-          {/* Ligne ajout joueur */}
-          {adding && (
-            <tr className="adding-row">
-              <td>
-                <input
-                  type="number"
-                  placeholder="Numéro"
-                  value={newPlayer.number || ""}
-                  onChange={(e) =>
-                    handleNewChange("number", Number(e.target.value))
-                  }
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Prénom"
-                  value={newPlayer.firstname || ""}
-                  onChange={(e) => handleNewChange("firstname", e.target.value)}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Nom"
-                  value={newPlayer.lastname || ""}
-                  onChange={(e) => handleNewChange("lastname", e.target.value)}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Poste"
-                  value={newPlayer.position || ""}
-                  onChange={(e) => handleNewChange("position", e.target.value)}
-                />
-              </td>
-              <td>
-                <ActionButton
-                  label="Enregistrer"
-                  variant="success"
-                  onClick={handleAdd}
-                />
-                <ActionButton
-                  label="Annuler"
-                  variant="primary"
-                  onClick={handleCancel}
-                />
-              </td>
-            </tr>
+          {!adding && (
+            <ActionButton
+              label="+ Ajouter un joueur"
+              variant="success"
+              onClick={() => setAdding(true)}
+            />
           )}
-        </tbody>
-      </table>
-
-      {!adding && (
-        <ActionButton
-          label="+ Ajouter un joueur"
-          variant="success"
-          onClick={() => setAdding(true)}
-        />
-      )}
+        </div>
+      </div>
     </div>
   );
 }
